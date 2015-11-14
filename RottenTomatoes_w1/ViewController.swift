@@ -54,16 +54,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("tableCell") as! SecondTableViewCell
         let movie: NSDictionary = movies[indexPath.row]
-        
         cell.tableViewCell.text = movie["title"] as! String?
         cell.SummaryView.text = movie["synopsis"] as! String?
         let posters = movie["posters"] as! NSDictionary
         let thumbnailString = posters["thumbnail"] as! String
         let thumbnailURL = NSURL(string: thumbnailString)
-        print("setting thumbnail", thumbnailURL)
+//        print("setting thumbnail", thumbnailURL)
         cell.imgView.setImageWithURL(thumbnailURL!)
         
         return cell
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let cell = sender as! SecondTableViewCell
+        let indexPath = tableView.indexPathForCell(cell)
+//        let movie = movies[indexPath!.row]
+        let movie: NSDictionary = movies[indexPath!.row]
+        let detailViewController = segue.destinationViewController as! DetailViewController
+        detailViewController.movie = movie
     }
 }
 
