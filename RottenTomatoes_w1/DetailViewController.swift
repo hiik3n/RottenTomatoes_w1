@@ -22,6 +22,8 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        CozyLoadingActivity.show("Loading...", disableUI: true)
         detailTitleView.text = (movie["title"] as? String)! + " (" + String(movie["year"] as! Int) + ")"
         detailTimeView.text = "Length: \n" + String(movie["runtime"] as! Int) + " mins"
         detailDayView.text = "Release Date: \n" + (movie.valueForKeyPath("release_dates.theater") as! String)
@@ -33,9 +35,11 @@ class DetailViewController: UIViewController {
 //            print(((actors[index] as! NSDictionary)["characters"] as! NSArray)[0] as! String)
 //        }
         detailSumView.text = movie["synopsis"] as! String
-//        print(movie.valueForKeyPath("posters.detailed") as! String)
         detailImgView.setImageWithURL(NSURL(string: (movie.valueForKeyPath("posters.detailed") as! String))!)
-        // Do any additional setup after loading the view.
+//        let urlString = movie.valueForKeyPath("posters.detailed") as! String
+//        let imgURL: NSURL = NSURL(string: urlString)!
+//        let request: NSURLRequest = NSURLRequest(URL: imgURL)
+        CozyLoadingActivity.hide()
     }
 
     override func didReceiveMemoryWarning() {

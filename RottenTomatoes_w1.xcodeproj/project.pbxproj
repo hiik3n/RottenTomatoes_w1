@@ -16,6 +16,7 @@
 		5AEFC8C41BF4DCFE007EE51E /* RottenTomatoes_w1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFC8C31BF4DCFE007EE51E /* RottenTomatoes_w1UITests.swift */; };
 		5AEFC8D41BF4E316007EE51E /* SecondTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFC8D31BF4E316007EE51E /* SecondTableViewCell.swift */; };
 		5AEFC8D61BF70EA9007EE51E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFC8D51BF70EA9007EE51E /* DetailViewController.swift */; };
+		5AEFC8D81BF73D02007EE51E /* CozyLoadingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFC8D71BF73D02007EE51E /* CozyLoadingActivity.swift */; };
 		DCDCDB1114A009F480FF3261 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4553A2A484533A9AAAC6DC7A /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		5AEFC8C51BF4DCFE007EE51E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5AEFC8D31BF4E316007EE51E /* SecondTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondTableViewCell.swift; sourceTree = "<group>"; };
 		5AEFC8D51BF70EA9007EE51E /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		5AEFC8D71BF73D02007EE51E /* CozyLoadingActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CozyLoadingActivity.swift; sourceTree = "<group>"; };
 		A0AC00579F3A6AA5ED323FBA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E99C82B44FFF55E7A11D1C8B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				5AEFC8A31BF4DCFE007EE51E /* AppDelegate.swift */,
+				5AEFC8D71BF73D02007EE51E /* CozyLoadingActivity.swift */,
 				5AEFC8A51BF4DCFE007EE51E /* ViewController.swift */,
 				5AEFC8A71BF4DCFE007EE51E /* Main.storyboard */,
 				5AEFC8D51BF70EA9007EE51E /* DetailViewController.swift */,
@@ -340,6 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AEFC8D81BF73D02007EE51E /* CozyLoadingActivity.swift in Sources */,
 				5AEFC8A61BF4DCFE007EE51E /* ViewController.swift in Sources */,
 				5AEFC8A41BF4DCFE007EE51E /* AppDelegate.swift in Sources */,
 				5AEFC8D41BF4E316007EE51E /* SecondTableViewCell.swift in Sources */,

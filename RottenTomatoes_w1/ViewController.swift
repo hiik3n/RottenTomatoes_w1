@@ -19,6 +19,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        CozyLoadingActivity.show("Loading...", disableUI: true)
+        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -34,6 +37,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
+                CozyLoadingActivity.hide()
             })
         }
         
