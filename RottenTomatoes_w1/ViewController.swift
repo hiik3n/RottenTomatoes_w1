@@ -17,11 +17,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let jsonUrl = NSURL(string: "https://coderschool-movies.herokuapp.com/movies?api_key=xja087zcvxljadsflh214")!
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var ErrorView: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+//        self.ErrorView.backgroundColor = UIColor.clearColor()
+        self.ErrorView.alpha = 0
         CozyLoadingActivity.show("", disableUI: true)
         
         fetch_movies()
@@ -41,64 +44,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let task = session.dataTaskWithURL(jsonUrl) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             guard error == nil else  {
 //                print("error loading from URL", error!)
+
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    CozyLoadingActivity.hide()
+                    self.ErrorView.text = " ⚠️ Error Network!"
+                    self.ErrorView.alpha = 1
+                })
                 print("error loading from URL")
-                CozyLoadingActivity.hide()
-                //Create the AlertController
-                
-                let actionSheetController: UIAlertController = UIAlertController(title: "Network Error", message: "Please re-check your network connection!", preferredStyle: UIAlertControllerStyle.Alert)
-                
-                //Create and add the OK action
-                let OkAction: UIAlertAction = UIAlertAction(title: "OK", style: .Default) { action -> Void in
-                    //Do some stuff
-                    CozyLoadingActivity.show("", disableUI: true)
-                    self.fetch_movies()
-                }
-                actionSheetController.addAction(OkAction)
-                
-                //Create and add the Cancel action
-                let CancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
-                    //Do some stuff
-                    return
-                }
-                actionSheetController.addAction(CancelAction)
-                
-                //Present the AlertController
-                self.presentViewController(actionSheetController, animated: true, completion: nil)
                 return
             }
+            
             let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
             self.movies = json[ "movies" ] as! [NSDictionary]
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
                 CozyLoadingActivity.hide()
+                self.ErrorView.alpha = 0
             })
         }
         task.resume()
-    }
-    
-    @IBAction func showAlertTapped(sender: AnyObject) {
-        //Create the AlertController
-        let actionSheetController: UIAlertController = UIAlertController(title: "Alert", message: "Swiftly Now! Choose an option!", preferredStyle: .Alert)
-        
-        //Create and add the Cancel action
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
-            //Do some stuff
-        }
-        actionSheetController.addAction(cancelAction)
-        //Create and an option action
-        let nextAction: UIAlertAction = UIAlertAction(title: "Next", style: .Default) { action -> Void in
-            //Do some other stuff
-        }
-        actionSheetController.addAction(nextAction)
-        //Add a text field
-        actionSheetController.addTextFieldWithConfigurationHandler { textField -> Void in
-            //TextField configuration
-            textField.textColor = UIColor.blueColor()
-        }
-        
-        //Present the AlertController
-        self.presentViewController(actionSheetController, animated: true, completion: nil)
     }
     
 //    func delay(delay:Double, closure:()->()) {
